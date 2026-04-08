@@ -20,7 +20,7 @@ all:
     enable_backups: false
 docker-manager-first:
   hosts:
-    dev:
+    opencrvs-test1:
       ansible_host: '52.140.120.15' # @todo set this to be the IP address of your server
       data_label: data1 # for manager machines, this should always be "data1"
 
