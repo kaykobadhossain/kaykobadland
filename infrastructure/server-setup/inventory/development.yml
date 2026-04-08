@@ -21,9 +21,8 @@ all:
 docker-manager-first:
   hosts:
     dev:
-      opencrvs-test1: # @todo set this to be the hostname of your target server
-        ansible_host: '52.140.120.15' # @todo set this to be the IP address of your server
-        data_label: data1 # for manager machines, this should always be "data1"
+      ansible_host: '52.140.120.15' # @todo set this to be the IP address of your server
+      data_label: data1 # for manager machines, this should always be "data1"
 
 # Development servers are not configured to use workers.
 docker-workers: {}
