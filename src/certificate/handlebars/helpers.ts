@@ -8,9 +8,12 @@
  *
  * Copyright (C) The OpenCRVS Authors located at https://github.com/opencrvs/opencrvs-core/blob/master/AUTHORS.
  */
-import { roles } from './roles'
-import { Request, ResponseToolkit } from '@hapi/hapi'
 
-export async function rolesHandler(_: Request, h: ResponseToolkit) {
-  return h.response(roles)
-}
+/*
+ * This file is compiled to JavaScript and served at /handlebars.js.
+ * The client loads it to register any country-specific Handlebars helpers
+ * for use in certificate SVG templates.
+ *
+ * Add custom helpers here as named exports, e.g.:
+ *   export function myHelper(...args) { ... }
+ */
