@@ -3,5 +3,6 @@ export enum Event {
   Death = 'death',
   Marriage = 'marriage',
   TENNIS_CLUB_MEMBERSHIP = 'tennis-club-membership',
-  NID = 'nid'
+  NID = 'nid',
+  PASSPORT = 'passport'
 }

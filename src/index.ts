@@ -564,6 +564,16 @@ export async function createServer() {
     }
   })
 
+  server.route({
+    method: 'POST',
+    path: `/trigger/events/${Event.PASSPORT}/actions/${ActionType.REGISTER}`,
+    handler: onRegisterHandler,
+    options: {
+      tags: ['api', 'events'],
+      description: 'Receives notifications on event actions'
+    }
+  })
+
   server.route(getUserNotificationRoutes())
 
   server.route({

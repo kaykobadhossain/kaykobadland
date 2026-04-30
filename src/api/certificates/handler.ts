@@ -412,6 +412,25 @@ export async function certificateHandler(
       },
       svgUrl: '/api/countryconfig/certificates/v2.nid-certificate.svg',
       fonts: notoSansFont
+    },
+
+    {
+      id: 'v2.passport-certificate',
+      event: Event.PASSPORT,
+      isV2Template: true,
+      label: {
+        id: 'certificates.passport.certificate',
+        defaultMessage: 'Smart PASSPORT Card',
+        description: 'The label for a Smart PASSPORT Card'
+      },
+      isDefault: true,
+      fee: {
+        onTime: 0,
+        late: 0,
+        delayed: 0
+      },
+      svgUrl: '/api/countryconfig/certificates/v2.passport-certificate.svg',
+      fonts: notoSansFont
     }
   ]
   return certificateConfigs
