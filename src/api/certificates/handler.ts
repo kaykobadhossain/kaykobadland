@@ -394,6 +394,24 @@ export async function certificateHandler(
       svgUrl:
         '/api/countryconfig/certificates/v2.death-certificate-certified-copy.svg',
       fonts: libreBaskervilleFont
+    },
+    {
+      id: 'v2.nid-certificate',
+      event: Event.NID,
+      isV2Template: true,
+      label: {
+        id: 'certificates.nid.certificate',
+        defaultMessage: 'Smart NID Card',
+        description: 'The label for a Smart NID Card'
+      },
+      isDefault: true,
+      fee: {
+        onTime: 0,
+        late: 0,
+        delayed: 0
+      },
+      svgUrl: '/api/countryconfig/certificates/v2.nid-certificate.svg',
+      fonts: notoSansFont
     }
   ]
   return certificateConfigs

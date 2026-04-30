@@ -74,6 +74,14 @@ function getInformant(eventType: string, declaration: Record<string, any>) {
       : declaration['informant.name']
   }
 
+  if (eventType === Event.NID) {
+    return declaration['citizen.name']
+  }
+
+  if (eventType === Event.TENNIS_CLUB_MEMBERSHIP) {
+    return declaration['applicant.name']
+  }
+
   throw new Error('Invalid event type')
 }
 
@@ -107,7 +115,11 @@ async function getNotificationParams(
     name: resolveName(
       event.type === Event.Birth
         ? declaration['child.name']
-        : declaration['deceased.name']
+        : event.type === Event.NID
+          ? declaration['citizen.name']
+          : event.type === Event.TENNIS_CLUB_MEMBERSHIP
+            ? declaration['applicant.name']
+            : declaration['deceased.name']
     ).fullName,
     recipient,
     deliveryMethod: applicationConfig.INFORMANT_NOTIFICATION_DELIVERY_METHOD
@@ -132,9 +144,9 @@ async function getNotificationParams(
   if (pendingAction.type === ActionType.NOTIFY) {
     return {
       event:
-        event.type === Event.Birth
-          ? InformantTemplateType.birthInProgressNotification
-          : InformantTemplateType.deathInProgressNotification,
+        event.type === Event.Death
+          ? InformantTemplateType.deathInProgressNotification
+          : InformantTemplateType.birthInProgressNotification,
       ...params
     }
   }
@@ -142,9 +154,9 @@ async function getNotificationParams(
   if (pendingAction.type === ActionType.DECLARE) {
     return {
       event:
-        event.type === Event.Birth
-          ? InformantTemplateType.birthDeclarationNotification
-          : InformantTemplateType.deathDeclarationNotification,
+        event.type === Event.Death
+          ? InformantTemplateType.deathDeclarationNotification
+          : InformantTemplateType.birthDeclarationNotification,
       ...params
     }
   }
@@ -156,9 +168,9 @@ async function getNotificationParams(
         contact: { mobile, email },
         name,
         event:
-          event.type === Event.Birth
-            ? InformantTemplateType.birthRegistrationNotification
-            : InformantTemplateType.deathRegistrationNotification,
+          event.type === Event.Death
+            ? InformantTemplateType.deathRegistrationNotification
+            : InformantTemplateType.birthRegistrationNotification,
         reason: 'registration number being missing'
       })
 
@@ -167,9 +179,9 @@ async function getNotificationParams(
 
     return {
       event:
-        event.type === Event.Birth
-          ? InformantTemplateType.birthRegistrationNotification
-          : InformantTemplateType.deathRegistrationNotification,
+        event.type === Event.Death
+          ? InformantTemplateType.deathRegistrationNotification
+          : InformantTemplateType.birthRegistrationNotification,
       ...params,
       variable: { ...params.variable, registrationNumber }
     }
@@ -178,9 +190,9 @@ async function getNotificationParams(
   if (pendingAction.type === ActionType.REJECT) {
     return {
       event:
-        event.type === Event.Birth
-          ? InformantTemplateType.birthRejectionNotification
-          : InformantTemplateType.deathRejectionNotification,
+        event.type === Event.Death
+          ? InformantTemplateType.deathRejectionNotification
+          : InformantTemplateType.birthRejectionNotification,
       ...params
     }
   }
